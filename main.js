@@ -9,7 +9,7 @@ class Spark {
         if (this.events[event]) {
             this.events[event](...payload)
             
-            if (this.events['*'].events.includes(event)) {
+            if (this.events['*'] && this.events['*'].events.includes(event)) {
                 this.events['*'].action(...payload)
             }
         }
@@ -35,16 +35,4 @@ class Spark {
     }
 }
 
-const spark = new Spark()
-
-spark.on('hello', (payload) => {
-    console.log(payload)
-})
-
-spark.onAll(['hello'], () => {
-    console.log('Something was triggered');
-})
-
-spark.emit('hello', {
-    msg: "Hellloooooo"
-})
+module.exports = Spark;

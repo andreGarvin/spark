@@ -1,0 +1,22 @@
+{
+  "name": "spark",
+  "version": "1.0.0",
+  "description": "A JavaScript EventEmitter",
+  "main": "main.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andreGarvin/spark.git"
+  },
+  "author": "= <=>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andreGarvin/spark/issues"
+  },
+  "homepage": "https://github.com/andreGarvin/spark#readme",
+  "devDependencies": {
+    "jest": "^21.2.1"
+  }
+}
