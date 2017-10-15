@@ -10,7 +10,7 @@ class Spark {
             this.events[event](...payload)
             
             if (this.events['*'] && this.events['*'].events.includes(event)) {
-                this.events['*'].action(...payload)
+                return this.events['*'].action(...payload)
             }
         }
     }
@@ -18,20 +18,29 @@ class Spark {
     on(event, action) {
         if (event && action) {
             if (typeof action === 'function' || typeof action === 'object') {
-                this.events[event] = action;
+                return this.events[event] = action;
             }
         }
     }
 
     onAll(events, action) {
         if (Array.isArray(events)) {
-            this.on('*', {
+            return this.on('*', {
                 events,
                 action
             })
         } else if (events === '*') {
-            this.on('*', action)
+            return this.on('*', action)
         }
+    }
+
+    slince(event) {
+        return this.events[event] ? delete this.events[event] : undefined;
+    }
+
+    once(event, action) {
+        this.on(...arguments)
+        return this.slince(event)
     }
 }
 
