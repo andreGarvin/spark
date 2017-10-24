@@ -1,7 +1,7 @@
 {
   "name": "spark",
   "version": "1.0.0",
-  "description": "A JavaScript EventEmitter",
+  "description": "A small JavaScript EventEmitter for people who need something samll and easy to mange",
   "main": "main.js",
   "scripts": {
     "test": "jest"
@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/andreGarvin/spark.git"
   },
-  "author": "= <=>",
+  "author": "Andre Garvin <Yea Boi>",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/andreGarvin/spark/issues"
