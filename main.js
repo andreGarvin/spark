@@ -23,14 +23,17 @@ class Spark {
         }
     }
 
-    onAll(events, action) {
+    all(events, action) {
         if (Array.isArray(events)) {
             return this.on('*', {
                 events,
                 action
             })
         } else if (events === '*') {
-            return this.on('*', action)
+            return this.on('*', {
+                events: ['*'],
+                action
+            })
         }
     }
 
