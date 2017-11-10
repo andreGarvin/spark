@@ -31,7 +31,7 @@ class Spark {
             })
         } else if (events === '*') {
             return this.on('*', {
-                events: ['*'],
+                events: Object.keys(this.events),
                 action
             })
         }
