@@ -32,19 +32,36 @@ describe('Multipule payload dump', () => {
     })
 })
 
-describe('spark.onAll()', () => {
+describe('spark.all()', () => {
     
     test('This should also get a emitter message', () => {
-        emitter.on('hello', (msg) => msg)
-        emitter.onAll(['hello'], (msg) => {
-            expect(msg).toBe('goodbye')
+        emitter.on('hello', msg => msg)
+        emitter.on('is-ES6-here', (str, bool) => {
+            const NPMpackage = str.split('+')[0]
+
+            expect(NPMpackage).toBe('babel')
+            expect(bool).toBeFalsy()
         })
-    
+        emitter.on('no-work-today', bool => {
+            expect(bool).toBeFalsy()
+        })
+        
+        emitter.all(['hello', 'no-work-today'], (msg) => {
+            expect(msg).not.toBeUndefined()
+        })
+
+        emitter.all('*', msg => {
+            console.log(`msg: ${msg}`)
+            expect(msg).not.toBeUndefined()
+        })
+        
         emitter.emit('hello', 'goodbye')
+        emitter.emit('no-work-today', false)
+        emitter.emit('is-ES6-here', 'babel+webpack', false)
     })
 })
 
-describe('spark.off()', () => {
+describe('spark.slince()', () => {
     
     test('This should remove the trigger the emitter', () => {
         emitter.on('hello', (msg) => {
@@ -57,15 +74,24 @@ describe('spark.off()', () => {
     })
 })
 
-describe.skip('spark.once()', () => {
+describe('spark.once()', () => {
     
     test('This should only get one emitt the trigger the emitter', () => {
-        emitter.on('hello', (msg) => {
-            expect(msg).toBeUndefined()
+        emitter.on('hello', msg => {
+            let count = 0;
+
+            count++
+            if (count === 1) {
+                expect(msg).toBe('This should work')
+            } else {
+                expect().toThrowError()
+            }
         })
 
+        emitter.emit('hello', "This should work")
+        
         emitter.slince('hello')
 
-        emitter.emit('hello', "This should not wwork")
+        emitter.emit('hello', "This should not work")
     })
 })
