@@ -37,13 +37,13 @@ class Spark {
         }
     }
 
-    slince(event) {
+    silence(event) {
         return this.events[event] ? delete this.events[event] : undefined;
     }
 
     once(event, action) {
         this.on(...arguments)
-        return this.slince(event)
+        return this.silence(event)
     }
 }
 

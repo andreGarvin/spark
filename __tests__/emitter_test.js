@@ -68,7 +68,7 @@ describe('spark.slince()', () => {
             expect(msg).toBeUndefined()
         })
 
-        emitter.slince('hello')
+        emitter.silence('hello')
 
         emitter.emit('hello', "This should not wwork")
     })
@@ -77,7 +77,7 @@ describe('spark.slince()', () => {
 describe('spark.once()', () => {
     
     test('This should only get one emitt the trigger the emitter', () => {
-        emitter.on('hello', msg => {
+        emitter.once('hello', msg => {
             let count = 0;
 
             count++
@@ -90,8 +90,6 @@ describe('spark.once()', () => {
 
         emitter.emit('hello', "This should work")
         
-        emitter.slince('hello')
-
         emitter.emit('hello', "This should not work")
     })
 })

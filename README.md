@@ -1,5 +1,7 @@
 # Spark
-Another Javascript event emitter cause we do not have enough.
+Another JavaScript event emitter cause we do not have enough.
+
+I really did not have a particular reason for creating this event emitter. I guess the only 'advantage' this emitter has 
 
 ```bash
 npm i @andre_garvin/spark --save
@@ -24,23 +26,23 @@ emitter.emit('message', 'Hello, World!')
 emitter.emit('crash', 'There is a error')
 ```
 
-`on`: Recivces the messages being emitted.
+`on`: receives the messages being emitted.
 ```js
 emitter.on('event-name', data => console.log)
 ```
-`emit`: emits message/s to a given event name. You can also pass in mulitple arguments to be emitted.
+`emit`: emits a message or messages to a given event name. You can also pass in multiple arguments be sent to the subscriber of the event that it is being emitted.
 ```js
 emitter.emit('event-name', 'event')
 emitter.emit('event-name', [1,2,'bar'], { msg: 'hello, wolrd' }, true, foo(), 17329)
 ```
-`slince`: Turns off a event from receviecing messages.
+`slince`: Turns off a event from receiving messages.
 ```js
 // This will do no more harm to anyone anymore
-emitter.slince('@channel')
+emitter.silence('@channel')
 ```
-`once`: Same a the `on` method but will only receviec the emitted message once.
+`once`: Same a the `on` method but will only receive the emitted message once.
 <br />
-`all`: Receviecs messages from speficed event names.
+`all`: Receives messages from specified event names.
 ```js
 // Pass a array of the event names
 emitter.all(['hello', 'foo', 'bar'], msg => {
@@ -53,7 +55,7 @@ emitter.all('*', msg => {
 })
 ```
 
-### To see further examples view the test I set up, I believe sometimes it can be very helpful to understand most projects is by readin the test if the documentation is not up to pare.
+### To see further examples view the test I set up, I believe sometimes it can be very helpful to understand most projects is by reading the test if the documentation is not up to pare.
 
 ## Contributing:
-#### Hell why not ? If I make missing spelling or grammar mistakes go a head send a PR on my mistakes. 
+#### Hell the why not ? If I make missing spelling or grammar mistakes go a head send a PR on my mistakes.
