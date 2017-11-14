@@ -1,6 +1,6 @@
 {
   "name": "@andre_garvin/spark",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A small JavaScript EventEmitter for people who need something samll and easy to mange",
   "main": "main.js",
   "scripts": {
