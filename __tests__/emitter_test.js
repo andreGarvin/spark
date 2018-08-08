@@ -11,9 +11,20 @@ describe('spark.on() && spark.emit()', () => {
             })
         })
     
-        emitter.emit('hello', {
-            msg: "Hello, World"
+        emitter.emit('hello', { msg: "Hello, World" })
+    })
+})
+
+describe('spark.on()', () => {
+
+    test('This the * on event listener should get a message even thought the listener was not declared', () => {
+        emitter.on('*', (payload) => {
+            expect(payload).toEqual({
+                msg: "Hello, World"
+            })
         })
+
+        emitter.emit('hello', { msg: "Hello, World" })
     })
 })
 
@@ -26,16 +37,16 @@ describe('Multipule payload dump', () => {
             expect(bool).toBeTruthy()
         })
     
-        emitter.emit('hello', {
-            msg: "Hello, World"
-        }, 1, "yep", true)
+        emitter.emit('hello', { msg: "Hello, World" }, 1, "yep", true)
     })
 })
 
 describe('spark.all()', () => {
     
     test('This should also get a emitter message', () => {
-        emitter.on('hello', msg => msg)
+        emitter.on('hello', msg => {
+            expect(msg).not.toBeUndefined()
+        })
         emitter.on('is-ES6-here', (str, bool) => {
             const NPMpackage = str.split('+')[0]
 
@@ -50,10 +61,15 @@ describe('spark.all()', () => {
             expect(msg).not.toBeUndefined()
         })
 
-        emitter.all('*', msg => {
-            console.log(`msg: ${msg}`)
+        emitter.all(msg => {
             expect(msg).not.toBeUndefined()
         })
+
+        // testing backwards compatibility
+        emitter.all('*', msg => {
+            expect(msg).not.toBeUndefined()
+        })
+
         
         emitter.emit('hello', 'goodbye')
         emitter.emit('no-work-today', false)
