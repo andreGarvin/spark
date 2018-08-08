@@ -8,13 +8,11 @@ jobs:
       - checkout
       - run: npm install
       - run: npm test
-      - persist_to_workspace:
-          root: ~/
-          paths: .
   publish:
     docker:
       - image: circleci/node:8.9.1
     steps:
+      - checkout
       - run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
       - run: npm publish
 
